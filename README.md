@@ -1,258 +1,210 @@
-\# SMS Fraud Detection
+# SMS Fraud Detection using Machine Learning
 
+## Project Description
 
+This project detects fraudulent and spam SMS messages using Machine Learning and Natural Language Processing (NLP).
 
-A machine learning-based web application that classifies SMS messages as \*\*SPAM\*\* or \*\*LEGITIMATE\*\* using Natural Language Processing (NLP).
+The system analyzes the text of an SMS message and classifies it as either SPAM or LEGITIMATE.
 
+The project uses TF-IDF (Term Frequency-Inverse Document Frequency) to convert SMS text into numerical features and Logistic Regression to classify the messages.
 
+A Streamlit web application is also developed to provide an interactive interface where users can enter an SMS message and receive a prediction in real time.
 
-The project uses \*\*TF-IDF vectorization\*\* to convert SMS text into numerical features and a \*\*Logistic Regression\*\* classifier to predict whether a message is likely to be spam.
+## Algorithms Used
 
+- Logistic Regression
+- TF-IDF Vectorization
 
+## Libraries Used
 
-\## Features
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Joblib
+- Streamlit
+- Plotly
 
+## Dataset
 
+The project uses the SMS Spam Collection dataset, which contains SMS messages labeled as either ham (legitimate) or spam.
 
-\- Classifies SMS messages as SPAM or LEGITIMATE
+The dataset was processed before training the machine learning model.
 
-\- Displays model probability for SPAM and HAM
+The preprocessing steps include:
 
-\- Provides a visual probability comparison using Plotly
+- Selecting the required message and label columns
+- Removing unnecessary columns
+- Removing duplicate messages
+- Cleaning the SMS text
+- Converting labels into numerical values
+- Splitting the dataset into training and testing data
 
-\- Provides safety guidance when a message is classified as SPAM
+The cleaned dataset used in the project is:
 
-\- Interactive web interface built with Streamlit
+- `cleaned_spam.csv`
 
-\- Uses a trained machine learning model for real-time prediction
+## Project Workflow
 
+1. Load SMS Dataset
+2. Data Preprocessing
+3. Remove Duplicate Messages
+4. Clean SMS Text
+5. Convert Labels into Numerical Values
+6. Split Dataset into Training and Testing Sets
+7. Apply TF-IDF Vectorization
+8. Train Logistic Regression Model
+9. Evaluate the Model
+10. Save the Trained Model and TF-IDF Vectorizer
+11. Predict New SMS Messages
+12. Display Results using Streamlit
 
+## Machine Learning Model
 
-\## Machine Learning Approach
+The project uses Logistic Regression as the classification algorithm.
 
+TF-IDF vectorization converts the text messages into numerical features that can be processed by the machine learning model.
 
+The trained model and vectorizer are saved using Joblib so that the application can make predictions without retraining the model every time it starts.
 
-The project follows these main steps:
+The saved files are:
 
+- `spam_model.pkl`
+- `tfidf_vectorizer.pkl`
 
+## Results
 
-1\. Load the SMS dataset
-
-2\. Clean and prepare the data
-
-3\. Remove duplicate messages
-
-4\. Convert labels into numerical values
-
-5\. Split the data into training and testing sets
-
-6\. Convert SMS text into TF-IDF features
-
-7\. Train a Logistic Regression classification model
-
-8\. Evaluate the model using classification metrics
-
-9\. Save the trained model and TF-IDF vectorizer
-
-10\. Use the saved model in a Streamlit web application
-
-
-
-\## Model Performance
-
-
-
-The final Logistic Regression model was evaluated on a held-out test set.
-
-
+The Logistic Regression model was evaluated on a held-out test dataset.
 
 | Metric | Result |
-
 |---|---:|
-
 | Accuracy | 97.97% |
-
 | Spam Precision | 91% |
-
 | Spam Recall | 95% |
-
 | Spam F1-Score | 93% |
 
+The model achieved approximately 95% recall for spam messages, meaning that it successfully identified most of the spam messages in the test dataset.
+
+## Web Application
+
+The project includes an interactive web application developed using Streamlit.
+
+The application allows users to:
+
+- Enter an SMS message
+- Classify the message as SPAM or LEGITIMATE
+- View the probability of the prediction
 
 
-The model achieved approximately \*\*95% recall for spam messages\*\*, meaning it identified most of the spam messages in the test set.
+- Compare SPAM and LEGITIMATE probabilities visually
+- Receive safety guidance when a message is classified as SPAM
 
+## Project Structure
 
+    SMS-Fraud-Detection-Model/
+    │
+    ├── assets/
+    │   └── download.png
+    │
+    ├── data/
+    │   └── cleaned_spam.csv
+    │
+    ├── app.py
+    ├── preprocess.py
+    ├── train_model.py
+    ├── test_model.py
+    │
+    ├── spam_model.pkl
+    ├── tfidf_vectorizer.pkl
+    │
+    ├── requirements.txt
+    ├── .gitignore
+    └── README.md
 
-\## Technologies Used
+## Installation
 
+### 1. Clone the Repository
 
+    git clone https://github.com/komalkadam09/SMS-Fraud-Detection-Model.git
 
-\- Python
+### 2. Open the Project Folder
 
-\- Pandas
+    cd SMS-Fraud-Detection-Model
 
-\- Scikit-learn
+### 3. Create a Virtual Environment
 
-\- Joblib
+    python -m venv venv
 
-\- Streamlit
-
-\- Plotly
-
-\- TF-IDF
-
-\- Logistic Regression
-
-
-
-\## Project Structure
-
-
-
-```text
-
-SMS-Fraud-Detection/
-
-│
-
-├── assets/
-
-│   └── download.png
-
-│
-
-├── data/
-
-│   └── cleaned\_spam.csv
-
-│
-
-├── app.py
-
-├── preprocess.py
-
-├── train\_model.py
-
-├── test\_model.py
-
-│
-
-├── spam\_model.pkl
-
-├── tfidf\_vectorizer.pkl
-
-│
-
-├── requirements.txt
-
-├── .gitignore
-
-└── README.md
-
-
-
-Installation
-
-1\. Clone the repository
-
-git clone <YOUR-GITHUB-REPOSITORY-URL>
-
-
-
-2\. Open the project folder
-
-cd SMS-Fraud-Detection
-
-
-
-3\. Create a virtual environment
-
-python -m venv venv
-
-
-
-4\. Activate the virtual environment
+### 4. Activate the Virtual Environment
 
 On Windows:
 
-venv\\Scripts\\activate
+    venv\Scripts\activate
 
+### 5. Install the Required Libraries
 
+    pip install -r requirements.txt
 
-5\. Install the required dependencies
+## Run the Application
 
-pip install -r requirements.txt
-
-
-
-Run the Application
-
-Start the Streamlit application using:
-
-streamlit run app.py
-
-
+    streamlit run app.py
 
 The application will open in your web browser.
 
-Enter an SMS message into the chat input and the trained model will classify it as SPAM or LEGITIMATE.
+Enter an SMS message into the application and the trained machine learning model will classify it as SPAM or LEGITIMATE.
 
-Dataset
+## Model Files
 
-The project uses the SMS Spam Collection dataset containing labeled SMS messages classified as ham or spam.
+The trained machine learning model and TF-IDF vectorizer are stored using Joblib.
 
-The dataset was cleaned by:
+- `spam_model.pkl`
+- `tfidf_vectorizer.pkl`
 
-\- Selecting the required message and label columns
+## Limitations
 
-\- Removing unnecessary columns
+This project is a machine learning-based SMS classification system, and its predictions are not guaranteed to identify every spam or fraudulent message.
 
-\- Removing duplicate records
+A message classified as LEGITIMATE should not automatically be considered completely safe.
 
-\- Converting labels into numerical values
+Users should always be careful when receiving messages containing:
 
-The original dataset is not included in the public repository unless its redistribution terms permit it. Users should obtain the dataset from its original source when necessary.
+- Unknown links
+- Requests for OTPs
+- Requests for passwords
+- Requests for banking information
+- Requests for personal information
+- Suspicious payment requests
 
-Model Files
-
-The trained model and TF-IDF vectorizer are saved using Joblib:
-
-spam\_model.pkl
-
-tfidf\_vectorizer.pkl
-
-
-
-These files allow the Streamlit application to make predictions without retraining the model every time it starts.
-
-Limitations
-
-This project is a machine learning classification system and its predictions are not guaranteed to identify every fraudulent or spam message.
-
-A message classified as LEGITIMATE should not automatically be considered completely safe. Users should still exercise caution when dealing with unknown senders, links, requests for personal information, OTPs, or financial details.
-
-Future Improvements
+## Future Improvements
 
 Possible future improvements include:
 
-\- Testing additional machine learning algorithms
+- Testing additional machine learning algorithms
+- Improving text preprocessing
+- Expanding the training dataset
+- Adding multilingual SMS support
+- Adding explainable AI features
+- Improving the user interface
+- Deploying the application online
+- Continuously improving the model using additional labeled data
 
-\- Improving text preprocessing
-
-\- Expanding the training dataset
-
-\- Adding multilingual SMS support
-
-\- Adding explainable AI features
-
-\- Deploying the application online
-
-\- Continuously improving the model using additional labeled data
-
-Author
+## Author
 
 Komal Kadam
 
 B.Tech – Artificial Intelligence and Data Science
 
+## Large Files
+
+The trained machine learning model and TF-IDF vectorizer are included in the repository:
+
+- `spam_model.pkl`
+- `tfidf_vectorizer.pkl`
+
+The cleaned dataset is also included:
+
+- `cleaned_spam.csv`
+
+The original dataset file `spam.csv` is not included in the GitHub repository because it is excluded using `.gitignore`.
+
+The project can be run using the included cleaned dataset and trained model files.
